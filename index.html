@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FleeBag移民服务 - EB1A/NIW/O1专业签证申请</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #263238;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: #E8F5E9;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* 英雄区域 */
+        #home {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(76, 175, 80, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        #home p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            background-color: #FFD54F;
+            color: #263238;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .stats-bar {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .stats-bar span {
+            display: inline-block;
+            margin: 0 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .stats-bar i {
+            margin-right: 0.5rem;
+            color: #FFD54F;
+        }
+        
+        /* 服务部分 */
+        #services {
+            padding: 5rem 0;
+            background-color: #F5F9F5;
+        }
+        
+        #services h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #263238;
+            font-size: 2.5rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .service-header {
+            background-color: #4CAF50;
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .service-header h3 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .service-body {
+            padding: 2rem;
+        }
+        
+        .service-tag {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-tag i {
+            margin-right: 0.5rem;
+        }
+        
+        .service-columns {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        
+        .service-column {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.5rem;
+        }
+        
+        .service-column h4 {
+            color: #263238;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .service-column ul {
+            padding-left: 1.5rem;
+        }
+        
+        .service-column li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .service-column li:before {
+            content: '•';
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        
+        .btn-service {
+            background-color: #81C784;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        /* 比较表格 */
+        .comparison-table {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table h3 {
+            text-align: center;
+            color: #263238;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: #E8F5E9;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #E8F5E9;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* 成功案例 */
+        #success {
+            padding: 5rem 0;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        #success h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .case-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .case-card {
+            background-color: rgba(255,255,255,0.9);
+            color: #263238;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .case-tag {
+            background-color: #E8F5E9;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .case-tag h4 {
+            margin: 0;
+            color: #4CAF50;
+        }
+        
+        .case-card h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        
+        .case-card p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-quote {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #81C784;
+        }
+        
+        .btn-center {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        /* 资质认证 */
+        .certifications {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .certifications h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #263238;
+            font-size: 2.5rem;
+        }
+        
+        .cert-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .cert-item {
+            text-align: center;
+        }
+        
+        .cert-number {
+            font-size: 2rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        /* 联系表单 */
+        #contact {
+            padding: 5rem 0;
+            background-color: #E8F5E9;
+        }
+        
+        #contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #263238;
+            font-size: 2.5rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #263238;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #A5D6A7;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-footer {
+            text-align: center;
+        }
+        
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .form-note {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #263238;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #E8F5E9;
+        }
+        
+        .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #81C784;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            color: #BDBDBD;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 1rem;
+            }
+            
+            #home h1 {
+                font-size: 2.2rem;
+            }
+            
+            #home p {
+                font-size: 1.2rem;
+            }
+            
+            .stats-bar span {
+                margin: 0.5rem 1rem;
+            }
+            
+            .service-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .comparison-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="container">
+            <div class="logo">FleeBag移民工作室</div>
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">签证服务</a></li>
+                <li><a href="#success">成功案例</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">免费评估</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 首页横幅 -->
+    <section id="home">
+        <div class="container">
+            <h1>专业美国移民签证服务</h1>
+            <p>EB1A · NIW · O1 专业申请团队，成功率行业领先</p>
+            <button class="btn-primary">免费资格评估</button>
+            <div class="stats-bar">
+                <span><i class="fas fa-check-circle"></i> 100+成功案例</span>
+                <span><i class="fas fa-check-circle"></i> 专业移民文案团队</span>
+                <span><i class="fas fa-check-circle"></i> 资深移民律师背书</span>
+                <span><i class="fas fa-check-circle"></i> 全程透明服务</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务 -->
+    <section id="services">
+        <div class="container">
+            <h2>三大专业签证服务</h2>
+            
+            <!-- EB1A服务 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>EB1A杰出人才签证</h3>
+                </div>
+                <div class="service-body">
+                    <p class="service-tag"><i class="fas fa-star"></i> 适合领域：科学、艺术、教育、商业、体育</p>
+                    <div class="service-columns">
+                        <div class="service-column">
+                        <h4>申请优势</h4>
+                            <ul>
+                                <li>无需雇主支持</li>
+                                <li>无需申请劳工证</li>
+                                <li>排期目前最短</li>
+                                <li>可无学历要求</li>
+                                <li>可同时申请NIW</li>
+                                <li>签证含金量高</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>基础申请要求</h4>
+                            <h5>以下10项要求需至少符合3项</h5>
+                            <ul>
+                                <li>国家级或国际级奖项</li>
+                                <li>专业协会会员</li>
+                                <li>媒体报道成就</li>
+                                <li>评审他人工作</li>
+                                <li>原创性重大贡献</li>
+                                <li>个人作品参展</li>
+                                <li>学术著作发表</li>
+                                <li>担任领导关键角色</li>
+                                <li>高于同行的工作薪酬</li>
+                                <li>艺术表演获得商业成功</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>我们的服务</h4>
+                            <ul>
+                                <li>申请资格全面评估</li>
+                                <li>证据材料收集指导</li>
+                                <li>个性化申请方案</li>
+                                <li>紧急加急处理</li>
+                                <li>推荐信撰写优化</li>
+                                <li>申请策略制定</li>
+                                <li>专业申请文书撰写</li>
+                                <li>专属移民咨询服务</li>
+                                <li>1V1全程案件跟进</li>
+                                <li>行业专家咨询网络</li>
+                                <li>成功案例数据库</li>
+                            </ul>
+                        </div>
+                    </div>
+                   <a href="https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-2">
+                   <button class="btn-service">了解EB1A详情</button>
+                   </a>
+                </div>
+            </div>
+            
+            <!-- NIW服务 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>NIW国家利益豁免</h3>
+                </div>
+                <div class="service-body">
+                    <p class="service-tag"><i class="fas fa-star"></i> 适合领域：STEM专业、研究人员、企业家</p>
+                    <div class="service-columns">
+                        <div class="service-column">
+                            <h4>申请优势</h4>
+                            <ul>
+                                <li>无需雇主支持</li>
+                                <li>无需劳工证</li>
+                                <li>排期相对较短</li>
+                                <li>学历要求较低</li>
+                                <li>可同时申请EB1</li>
+                                <li>申请要求相对较低</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>基础申请要求</h4>
+                            <h5>高等学历</h5>
+                            <ul>
+                                <li>硕士以上学历</li>
+                                <li>本科学位+稀缺岗位5年以上渐进性工作经验</li>
+                            <ul>
+                            <h5>卓越能力：以下6项要求须至少符合3项</h5>
+                            <ul>
+                                <li>本科及以上学历学位证</li>
+                                <li>10年全职工作经验</li>
+                                <li>执业许可证/职业证书</li>
+                                <li>岗位高薪酬</li>
+                                <li>专业会员资格</li>
+                                <li>行业认可</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>我们的服务</h4>
+                            <ul>
+                                <li>申请资格全面评估</li>
+                                <li>证据材料收集指导</li>
+                                <li>个性化申请方案</li>
+                                <li>紧急加急处理</li>
+                                <li>推荐信撰写优化</li>
+                                <li>申请策略制定</li>
+                                <li>专业申请文书撰写</li>
+                                <li>专属移民咨询服务</li>
+                                <li>1V1全程案件跟进</li>
+                                <li>行业专家咨询网络</li>
+                                <li>成功案例数据库</li>
+                            </ul>
+                        </div>
+                    </div>
+                   <a href="https://www.uscis.gov/policy-manual/volume-6-part-f-chapter-5">
+                   <button class="btn-service">了解NIW详情</button>
+                   </a>
+                </div>
+            </div>
+            
+            <!-- O1服务 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>O1杰出能力工作签证</h3>
+                </div>
+                <div class="service-body">
+                    <p class="service-tag"><i class="fas fa-star"></i> 适合领域：影视、艺术、体育、科技、商业</p>
+                    <div class="service-columns">
+                        <div class="service-column">
+                            <h4>签证特点</h4>
+                            <ul>
+                                <li>无年度配额限制</li>
+                                <li>可无限次延期</li>
+                                <li>可转EB1绿卡</li>
+                                <li>审理速度快</li>
+                                <li>家属可随行</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>基础申请要求</h4>
+                            <h5>以下10项要求需至少符合3项</h5>
+                            <ul>
+                                <li>国家级或国际级奖项</li>
+                                <li>专业协会会员</li>
+                                <li>媒体报道成就</li>
+                                <li>评审他人工作</li>
+                                <li>原创性重大贡献</li>
+                                <li>个人作品参展</li>
+                                <li>学术著作发表</li>
+                                <li>担任领导关键角色</li>
+                                <li>高于同行的工作薪酬</li>
+                                <li>艺术表演获得商业成功</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h4>我们的服务</h4>
+                            <ul>
+                                <li>申请资格全面评估</li>
+                                <li>证据材料收集指导</li>
+                                <li>个性化申请方案</li>
+                                <li>行业专家咨询网络</li>
+                                <li>成功案例数据库</li>
+                                <li>紧急加急处理</li>
+                                <li>雇主沟通协助</li>
+                                <li>推荐信撰写优化</li>
+                                <li>申请策略制定</li>
+                                <li>专业申请文书撰写</li>
+                                <li>专属移民咨询服务</li>
+                                <li>1V1全程案件跟进</li>
+                            </ul>
+                        </div>
+                    </div>
+                   <a href="https://www.uscis.gov/policy-manual/volume-2-part-m-chapter-4">
+                   <button class="btn-service">了解O1详情</button>
+                   </a>
+                </div>
+            </div>
+            
+            <!-- 服务比较表 -->
+            <div class="comparison-table">
+                <h3>三大签证服务对比</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>比较项目</th>
+                            <th>EB1A</th>
+                            <th>NIW</th>
+                            <th>O1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>申请难度</td>
+                            <td>★★★★★</td>
+                            <td>★★★★</td>
+                            <td>★★★</td>
+                        </tr>
+                        <tr>
+                            <td>是否需要雇主</td>
+                            <td>否</td>
+                            <td>否</td>
+                            <td>是</td>
+                        </tr>
+                        <tr>
+                            <td>排期时间</td>
+                            <td>无/短</td>
+                            <td>中等</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>直接获得绿卡</td>
+                            <td>是</td>
+                            <td>是</td>
+                            <td>否</td>
+                        </tr>
+                        <tr>
+                            <td>适合人群</td>
+                            <td>顶尖人才</td>
+                            <td>专业人士</td>
+                            <td>行业精英</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section id="success">
+        <div class="container">
+            <h2>成功案例展示</h2>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-tag">
+                        <h4>EB1A案例</h4>
+                    </div>
+                    <h3>人工智能研究员</h3>
+                    <p><strong>背景:</strong> 5篇顶会论文，2项专利</p>
+                    <p><strong>挑战:</strong> 缺乏国际奖项</p>
+                    <p><strong>是否加急处理:</strong> 否</p>
+                    <p><strong>结果:</strong> 9个月获批</p>
+                    <div class="case-quote">"FleeBag团队将我的研究影响力完美呈现"</div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-tag">
+                        <h4>NIW案例</h4>
+                    </div>
+                    <h3>环境工程师</h3>
+                    <p><strong>背景:</strong> 污水处理技术创新</p>
+                    <p><strong>挑战:</strong> 证明全国性影响</p>
+                    <p><strong>是否加急处理:</strong> 是</p>
+                    <p><strong>结果:</strong> 2个月获批</p>
+                    <div class="case-quote">"团队专业地展示了我的工作对美国环保的价值"</div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-tag">
+                        <h4>O1案例</h4>
+                    </div>
+                    <h3>数字艺术家</h3>
+                    <p><strong>背景:</strong> 国际展览，媒体专访</p>
+                    <p><strong>挑战:</strong> 非传统艺术领域</p>
+                    <p><strong>是否加急处理:</strong> 是</p> 
+                    <p><strong>结果:</strong> 15天获批</p>
+                    <div class="case-quote">"创意行业申请O1的完美指导"</div>
+                </div>
+            </div>
+            <div class="btn-center">
+                <button class="btn-primary">查看更多成功案例</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资质认证 -->
+    <section class="certifications">
+        <div class="container">
+            <h2>我们的专业资质</h2>
+                <div class="cert-item">
+                    <div class="cert-number">100%</div>
+                    <div>客户好评率</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-number">100+</div>
+                    <div>成功案例</div> 
+                </div>
+                <div class="cert-item">
+                    <div class="cert-number">10+</div>
+                    <div>年移民服务经验</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-number">90%</div>
+                    <div>案件成功率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about">
+        <div class="container">
+            <h2>关于FleeBag移民服务</h2>
+            <p>FleeBag移民服务团队由资深移民律师和专业文案团队组成，专注于EB1A、NIW和O1签证申请。我们的文案成员均为移民行业实际从业者，均为实际处理过移民申请并获得高通过率的专业移民文案和顾问，曾服务于WG，环球出海，海那边等大型海外项目服务公司。工作室于2023年开始经营新媒体账户，并成立工作室，吸纳优秀移民策划。工作室非商业化模式独立运行，秉着对客户负责，对工作审慎的态度，仅服务经团队评估后认为有成功率的客户。我们深入了解移民官的审批标准，能够为您量身定制最具说服力的申请方案。</p>
+            <!-- 可以添加更多关于团队的内容 -->
+        </div>
+    </section>
+
+    <!-- 联系表单 -->
+    <section id="contact">
+        <div class="container">
+            <h2>免费签证资格评估</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>您感兴趣的签证类型</label>
+                    <select>
+                        <option>请选择...</option>
+                        <option>EB1A杰出人才移民签证</option>
+                        <option>NIW国家利益豁免移民签证</option>
+                        <option>O1杰出能力非移民签证</option>
+                        <option>不确定，需要咨询</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>姓名</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-col">
+                        <label>邮箱</label>
+                        <input type="email">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>简要描述您的背景</label>
+                    <textarea placeholder="例如: 发表论文数量、获奖情况、专业成就等，如不清楚如何描述，可在此处留言“评估表”以获取详细的评估表"></textarea>
+                </div>
+                
+                <div class="form-footer">
+                    <button type="submit" class="btn-submit">提交评估申请</button>
+                    <p class="form-note">我们将在24小时内回复您的评估结果</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">FleeBag</div>
+            <p>专业移民签证服务</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-weibo"></i></a>
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2023 FleeBag移民服务. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
